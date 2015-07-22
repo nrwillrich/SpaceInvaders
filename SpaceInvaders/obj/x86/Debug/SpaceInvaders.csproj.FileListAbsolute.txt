@@ -23,3 +23,4 @@ H:\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.xml
 H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
 H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
+H:\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Space Invaders.xnb

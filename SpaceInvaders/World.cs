@@ -26,7 +26,7 @@ namespace SpaceInvaders
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
 
-        GameState m_state = GameState.Null;
+        GameState m_state = GameState.MainMenu;
 
         public void EnterState(GameState newState)
         {
@@ -175,7 +175,7 @@ namespace SpaceInvaders
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
 
-            //m_font = Content.Load<SpriteFont>("Arial");
+            m_font = Content.Load<SpriteFont>("Space Invaders");
 
             //m_entities.Add(
             //    new Player(this, m_screenRes * 0.5f, new Vector2(32, 32), m_texPlayer)
@@ -206,6 +206,8 @@ namespace SpaceInvaders
             foreach (Entity e in tmp)
                 e.Update(gameTime);
 
+            UpdateState(gameTime);
+
             base.Update(gameTime);
 
             m_prevKeyboardState = Keyboard.GetState();
@@ -223,6 +225,8 @@ namespace SpaceInvaders
 
             foreach (Entity e in m_entities)
                 e.Draw(gameTime, m_spriteBatch);
+
+            DrawState(gameTime);
 
             m_spriteBatch.End();
 
