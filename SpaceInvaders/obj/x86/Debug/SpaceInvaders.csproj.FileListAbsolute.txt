@@ -26,3 +26,27 @@ H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
 H:\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Space Invaders.xnb
 C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Space Invaders.xnb
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SpaceInvaders.exe
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SpaceInvaders.pdb
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
