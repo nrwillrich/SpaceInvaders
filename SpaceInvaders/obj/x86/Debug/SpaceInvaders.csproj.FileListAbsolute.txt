@@ -24,3 +24,5 @@ H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssembly
 H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 H:\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
 H:\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Space Invaders.xnb
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
+C:\Users\Guilherme\Documents\GitHubVisualStudio\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb

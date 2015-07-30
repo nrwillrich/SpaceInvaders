@@ -80,16 +80,16 @@ namespace SpaceInvaders
             {
                 case GameState.MainMenu:
                     {
-                    //    if (Keyboard.GetState().IsKeyDown(Keys.D1) &&
-                    //        !m_prevKeyboardState.IsKeyDown(Keys.D1))
-                    //    {
-                    //        EnterState(GameState.HumanTurn);
-                    //    }
-                    //    else if (Keyboard.GetState().IsKeyDown(Keys.D2) &&
-                    //             !m_prevKeyboardState.IsKeyDown(Keys.D2))
-                    //    {
-                    //        EnterState(GameState.MachineTurn);
-                    //    }
+                        if (Keyboard.GetState().IsKeyDown(Keys.Enter) &&
+                            !m_prevKeyboardState.IsKeyDown(Keys.Enter))
+                        {
+                            EnterState(GameState.Playing);
+                        }
+                        //    else if (Keyboard.GetState().IsKeyDown(Keys.D2) &&
+                        //             !m_prevKeyboardState.IsKeyDown(Keys.D2))
+                        //    {
+                        //        EnterState(GameState.MachineTurn);
+                        //    }
                     }
                     break;
 
