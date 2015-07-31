@@ -26,6 +26,8 @@ namespace SpaceInvaders
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
 
+        int highScore = 0, p1Score = 0;
+
         GameState m_state = GameState.MainMenu;
 
         public void EnterState(GameState newState)
@@ -128,19 +130,7 @@ namespace SpaceInvaders
             {
                 case GameState.MainMenu:
                     {
-                        m_spriteBatch.DrawString(m_font, "The Space Invaders", new Vector2(60.0f, 75.0F), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "Presents", new Vector2(150.0f, 120.0f), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "= ? mystery", new Vector2(190.0f, 190.0f), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "= 30 points", new Vector2(190.0f, 230.0f), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "= 20 points", new Vector2(190.0f, 270.0f), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "= 10 points", new Vector2(190.0f, 310.0f), Color.White);
-
-                        m_spriteBatch.DrawString(m_font, "Press Enter to Start", new Vector2(45.0f, 380.0f), Color.White);
+                        MainMenu();
                     }
                     break;
 
@@ -158,6 +148,18 @@ namespace SpaceInvaders
                     }
                     break;
             }
+        }
+
+        private void MainMenu()
+        {
+            m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(60.0f, 75.0F), Color.White);
+            m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(60.0f, 85.0F), Color.White);
+            m_spriteBatch.DrawString(m_font, "Presents", new Vector2(150.0f, 120.0f), Color.White);
+            m_spriteBatch.DrawString(m_font, "= ? mystery", new Vector2(190.0f, 190.0f), Color.White);
+            m_spriteBatch.DrawString(m_font, "= 30 points", new Vector2(190.0f, 230.0f), Color.White);
+            m_spriteBatch.DrawString(m_font, "= 20 points", new Vector2(190.0f, 270.0f), Color.White);
+            m_spriteBatch.DrawString(m_font, "= 10 points", new Vector2(190.0f, 310.0f), Color.White);
+            m_spriteBatch.DrawString(m_font, "Press Enter to Start", new Vector2(45.0f, 380.0f), Color.White);
         }
 
         public World()
@@ -187,7 +189,7 @@ namespace SpaceInvaders
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
 
-            m_font = Content.Load<SpriteFont>("Space Invaders");
+            m_font = Content.Load<SpriteFont>("Arial");
 
             //m_entities.Add(
             //    new Player(this, m_screenRes * 0.5f, new Vector2(32, 32), m_texPlayer)
@@ -229,7 +231,7 @@ namespace SpaceInvaders
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             m_spriteBatch.Begin(SpriteSortMode.BackToFront,
                                 BlendState.AlphaBlend,
