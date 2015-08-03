@@ -77,3 +77,5 @@ H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.RawInput.
 H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.xml
 H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
 H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Arial.xnb
+E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
+E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
