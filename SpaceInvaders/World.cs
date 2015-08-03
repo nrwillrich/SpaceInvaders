@@ -114,11 +114,11 @@ namespace SpaceInvaders
 
                 case GameState.GameOver:
                     {
-                        if (Mouse.GetState().LeftButton == ButtonState.Pressed &&
-                           m_prevMouseState.LeftButton != ButtonState.Pressed)
-                        {
-                            EnterState(GameState.MainMenu);
-                        }
+                        //if (Mouse.GetState().LeftButton == ButtonState.Pressed &&
+                        //   m_prevMouseState.LeftButton != ButtonState.Pressed)
+                        //{
+                        //    EnterState(GameState.MainMenu);
+                        //}
                     }
                     break;
             }
@@ -137,6 +137,7 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         //DrawBoard();
+                        m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
                     }
                     break;
 
@@ -157,7 +158,7 @@ namespace SpaceInvaders
             // https://www.youtube.com/watch?v=axlx3o0codc
             // https://danieltian.wordpress.com/2008/12/24/xna-tutorial-typewriter-text-box-with-proper-word-wrapping-part-3/
 
-            String strPlay = "PLAY";
+            //String strPlay = "PLAY";
 
             m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 75.0F), Color.White);
             m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(70.0f, 95.0F), Color.White);
