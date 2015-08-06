@@ -79,3 +79,32 @@ H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojR
 H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Arial.xnb
 E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\player.jpg
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Space Invaders.xnb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Arial.xnb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SpaceInvaders.exe
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SpaceInvaders.pdb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\MonoGame.Framework.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XAudio2.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D11.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.DXGI.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct2D1.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XInput.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.RawInput.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.dll
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\MonoGame.Framework.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XAudio2.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D11.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.DXGI.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct2D1.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XInput.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.RawInput.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.xml
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\PlayerSheet.jpg

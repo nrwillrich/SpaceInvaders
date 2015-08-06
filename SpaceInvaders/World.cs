@@ -22,13 +22,26 @@ namespace SpaceInvaders
 
         public SpriteFont m_font;
 
-        //public Texture2D m_texPlayer;
+        public Texture2D m_texPlayer;
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
 
         int highScore = 0, p1Score = 0;
 
         GameState m_state = GameState.MainMenu;
+
+        public Rectangle[] m_playerPlaying = new Rectangle[]
+          {
+                    new Rectangle ( 0, 0, 34, 21)
+          };
+
+        public Rectangle[] m_playerDayingAnim = new Rectangle[]
+        {
+                    new Rectangle ( 0, 20, 34, 21),
+                    new Rectangle ( 0, 40, 34, 21)
+        };
+
+        float m_playerFrame = 0.0f;
 
         public void EnterState(GameState newState)
         {
@@ -87,6 +100,7 @@ namespace SpaceInvaders
                         {
                             EnterState(GameState.Playing);
                         }
+                        
                         //    else if (Keyboard.GetState().IsKeyDown(Keys.D2) &&
                         //             !m_prevKeyboardState.IsKeyDown(Keys.D2))
                         //    {
@@ -137,7 +151,13 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         //DrawBoard();
+                        //Rectangle r = m_enemyAnim[(int)m_enemyFrame % m_enemyAnim.Length];
+                        Rectangle r = m_playerPlaying[(int)m_playerFrame % m_playerPlaying.Length];
+
                         m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
+                        //m_spriteBatch.Draw(m_texPlayer, new Vector2(300.0f, 100.0f), Color.White);
+
+                        m_spriteBatch.Draw(m_texPlayer, new Vector2(200.0f, 200.0f), r, Color.White);
                     }
                     break;
 
@@ -150,7 +170,7 @@ namespace SpaceInvaders
                     break;
             }
         }
-
+        
         //float lengthPlay = 0.0f;
 
         private void MainMenu(GameTime gameTime)
@@ -204,7 +224,7 @@ namespace SpaceInvaders
         {
             m_spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //m_texPlayer = Content.Load<Texture2D>("Char19");
+            m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
 
@@ -265,5 +285,6 @@ namespace SpaceInvaders
 
             base.Draw(gameTime);
         }
+        
     }
 }
