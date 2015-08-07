@@ -152,12 +152,15 @@ namespace SpaceInvaders
                     {
                         //DrawBoard();
                         //Rectangle r = m_enemyAnim[(int)m_enemyFrame % m_enemyAnim.Length];
-                        Rectangle r = m_playerPlaying[(int)m_playerFrame % m_playerPlaying.Length];
+                        Rectangle p = m_playerPlaying[(int)m_playerFrame % m_playerPlaying.Length];
+                        Rectangle d = m_playerDayingAnim[(int)m_playerFrame % m_playerDayingAnim.Length];
 
                         m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
                         //m_spriteBatch.Draw(m_texPlayer, new Vector2(300.0f, 100.0f), Color.White);
-
-                        m_spriteBatch.Draw(m_texPlayer, new Vector2(200.0f, 200.0f), r, Color.White);
+                        if (Keyboard.GetState().IsKeyDown(Keys.D1))
+                            m_spriteBatch.Draw(m_texPlayer, new Vector2(200.0f, 200.0f), d, Color.White);
+                        else
+                            m_spriteBatch.Draw(m_texPlayer, new Vector2(200.0f, 200.0f), p, Color.White);
                     }
                     break;
 
@@ -265,7 +268,7 @@ namespace SpaceInvaders
 
             m_prevKeyboardState = Keyboard.GetState();
 
-            m_prevMouseState = Mouse.GetState();
+            m_playerFrame += (float)gameTime.ElapsedGameTime.TotalSeconds * 8;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -278,6 +281,12 @@ namespace SpaceInvaders
 
             foreach (Entity e in m_entities)
                 e.Draw(gameTime, m_spriteBatch);
+
+            {
+                Rectangle r = m_playerDayingAnim[(int)m_playerFrame % m_playerDayingAnim.Length];
+
+                m_spriteBatch.DrawString(m_font, "X:" + r.X + " Y:" + r.Y, new Vector2(10, 10), Color.White);
+            }
 
             DrawState(gameTime);
 
