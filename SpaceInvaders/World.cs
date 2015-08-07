@@ -111,6 +111,7 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                         
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
                         //{
@@ -152,7 +153,7 @@ namespace SpaceInvaders
                     {
                         //DrawBoard();
                         //Rectangle r = m_enemyAnim[(int)m_enemyFrame % m_enemyAnim.Length];
-                        Rectangle p = m_playerPlaying[(int)m_playerFrame % m_playerPlaying.Length];
+                        Rectangle p = m_playerPlaying[(int)m_playerFrame % m_playerPlaying.Length] ;
                         Rectangle d = m_playerDayingAnim[(int)m_playerFrame % m_playerDayingAnim.Length];
 
                         m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);

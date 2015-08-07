@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpaceInvaders
 {
-    class Player : Character
+    public class Player : Character
     {
         //Bullet bullet = null;
 
@@ -16,7 +16,7 @@ namespace SpaceInvaders
                    float maxVel = 200.0f, float accel = 1000.0f, float friction = 5.0f)
             : base(world, pos, size, tex, maxVel, accel, friction)
         { }
-
+        
         //public void playerAnim()
         //{
         //    Rectangle[] m_playerAnim = new Rectangle[]
