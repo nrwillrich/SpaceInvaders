@@ -79,3 +79,5 @@ H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojR
 H:\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Windows\Debug\Content\Arial.xnb
 E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 E:\Documents\ESPECIALIZACAO\IA e Programação 2D\Trabalho 2\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
