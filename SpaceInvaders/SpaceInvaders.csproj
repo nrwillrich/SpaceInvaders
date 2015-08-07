@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="Entities\Dynamic\Body\Body.cs" />
     <Compile Include="Entities\Dynamic\Body\Character\Character.cs" />
+    <Compile Include="Entities\Dynamic\Body\Character\Enemies\Enemies.cs" />
+    <Compile Include="Entities\Dynamic\Body\Character\Enemies\Enemy.cs" />
     <Compile Include="Entities\Dynamic\Dynamic.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="World.cs" />
