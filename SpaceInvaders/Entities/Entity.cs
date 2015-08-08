@@ -10,11 +10,11 @@ namespace SpaceInvaders
     {
         public World m_world;
 
-        public bool isVisible;
+        public bool isVisible = true;
 
         public Entity(World world) { m_world = world; }
 
-        public virtual void Update(GameTime gameTime) {}
+        public virtual bool Update(GameTime gameTime) { return true;  }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch) {}
     }

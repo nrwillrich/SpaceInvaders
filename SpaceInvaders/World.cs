@@ -11,7 +11,7 @@ namespace SpaceInvaders
     public class World : Game
     {
         GraphicsDeviceManager m_graphics;
-        SpriteBatch m_spriteBatch;
+        public SpriteBatch m_spriteBatch;
 
         public List<Entity> m_entities = new List<Entity>();
 
@@ -24,8 +24,6 @@ namespace SpaceInvaders
 
         public Texture2D m_texInvadersSheet;
 
-        public Vector2 enemySize = new Vector2(28, 25);
-
         float m_frameNum = 0.0f;
 
         int m_sheetColumns = 2;
@@ -34,9 +32,26 @@ namespace SpaceInvaders
         int m_spriteWidth;
         int m_spriteHeight;
 
+        public Texture2D m_texPlayer;
+        public Texture2D m_texSpaceship;
+        public Texture2D m_texplayerBullet;
+
         int highScore = 0, p1Score = 0;
 
         GameState m_state = GameState.MainMenu;
+
+        public Rectangle[] m_playerPlaying = new Rectangle[]
+          {
+                    new Rectangle ( 0, 0, 34, 21)
+          };
+
+        public Rectangle[] m_playerDayingAnim = new Rectangle[]
+        {
+                    new Rectangle ( 0, 20, 34, 21),
+                    new Rectangle ( 0, 40, 34, 21)
+        };
+
+        public float m_playerFrame = 0.0f;
 
         public void EnterState(GameState newState)
         {
@@ -53,6 +68,10 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+
+
+                        m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
                     }
                     break;
 
@@ -95,6 +114,7 @@ namespace SpaceInvaders
                         {
                             EnterState(GameState.Playing);
                         }
+                        
                         //    else if (Keyboard.GetState().IsKeyDown(Keys.D2) &&
                         //             !m_prevKeyboardState.IsKeyDown(Keys.D2))
                         //    {
@@ -105,6 +125,7 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        //Update(gameTime);
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
                         //{
@@ -144,7 +165,6 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        //DrawBoard();
                         m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
                     }
                     break;
@@ -158,7 +178,7 @@ namespace SpaceInvaders
                     break;
             }
         }
-
+        
         //float lengthPlay = 0.0f;
 
         private void MainMenu(GameTime gameTime)
@@ -233,6 +253,10 @@ namespace SpaceInvaders
             m_spriteWidth = m_texInvadersSheet.Width / m_sheetColumns;
             m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;
 
+            m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
+            m_texSpaceship = Content.Load<Texture2D>("Spaceship");
+            m_texplayerBullet = Content.Load<Texture2D>("Bullet");
+            
             m_font = Content.Load<SpriteFont>("Arial");
         }
 
@@ -248,7 +272,8 @@ namespace SpaceInvaders
 
             List<Entity> tmp = new List<Entity>(m_entities);
             foreach (Entity e in tmp)
-                e.Update(gameTime);
+                if (e.Update(gameTime) == false)
+                    m_entities.Remove(e);
 
             UpdateState(gameTime);
 
@@ -256,7 +281,7 @@ namespace SpaceInvaders
 
             m_prevKeyboardState = Keyboard.GetState();
 
-            m_prevMouseState = Mouse.GetState();
+            m_playerFrame += (float)gameTime.ElapsedGameTime.TotalSeconds * 8;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -269,12 +294,13 @@ namespace SpaceInvaders
 
             foreach (Entity e in m_entities)
                 e.Draw(gameTime, m_spriteBatch);
-
+                        
             DrawState(gameTime);
 
             m_spriteBatch.End();
 
             base.Draw(gameTime);
         }
+        
     }
 }
