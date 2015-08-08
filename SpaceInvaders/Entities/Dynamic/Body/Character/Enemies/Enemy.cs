@@ -8,24 +8,22 @@ public enum EnemyState { Null, Alive, Dying };
 
 namespace SpaceInvaders
 {
-    class Enemy : Character
+    class Enemy : Dynamic
     {
-        public Texture2D m_texAnim1;
-        public Texture2D m_texAnim2;
-        public Texture2D m_texDestroy;
-
+        int texPos1, texPos2, texPos3;
+        
         public bool firstFrame = true;
 
         int m_dyingTimer;
 
         public EnemyState m_state = EnemyState.Alive;
 
-        public Enemy(World world, Vector2 pos, Vector2 size, Texture2D texAnim1, Texture2D texAnim2, Texture2D texDestroy, float maxVel = 200.0f, float accel = 1000.0f, float friction = 5.0f) :
-                base(world, pos, size, texAnim1, maxVel, accel, friction) {
+        public Enemy(World world, Vector2 pos, Vector2 size, int texPos1, int texPos2, int texPos3) :
+                base(world, pos, size, null) {
 
-            m_texAnim1 = texAnim1;
-            m_texAnim2 = texAnim2;
-            m_texDestroy = texDestroy;
+            this.texPos1 = texPos1;
+            this.texPos2 = texPos2;
+            this.texPos3 = texPos3;
         }
 
         public void EnterState(EnemyState newState)
@@ -44,7 +42,7 @@ namespace SpaceInvaders
                 case EnemyState.Dying:
                     {
                         m_dyingTimer = 700; // milliseconds
-                        m_tex = m_texDestroy;
+                        m_tex = m_world.getSprite(texPos3);
                     }
                     break;
             }
@@ -89,11 +87,11 @@ namespace SpaceInvaders
 
                         if (firstFrame)
                         {
-                            m_tex = m_texAnim1;
+                            m_tex = m_world.getSprite(texPos1);
                         }
                         else
                         {
-                            m_tex = m_texAnim2;
+                            m_tex = m_world.getSprite(texPos2);
                         }
                     }
                     break;
@@ -136,8 +134,4 @@ namespace SpaceInvaders
             base.Update(gameTime);
         }
     }
-
-
-
-
 }
