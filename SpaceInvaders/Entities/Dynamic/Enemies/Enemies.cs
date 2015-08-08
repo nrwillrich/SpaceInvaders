@@ -55,11 +55,6 @@ namespace SpaceInvaders
                         }
 
                         m_enemies[r, c] = enemy;
-
-                        // m_recInvaders[r, c].Width = m_world.m_texInvader1.Width;
-                        // m_recInvaders[r, c].Height = m_world.m_texInvader1.Height;
-                        // m_recInvaders[r, c].X = 30 * c;
-                        // m_recInvaders[r, c].Y = 25 * r;
                     }
         }
     }
