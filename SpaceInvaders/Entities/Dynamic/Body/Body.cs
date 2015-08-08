@@ -27,7 +27,7 @@ namespace SpaceInvaders
             m_dir = Vector2.Zero;
         }
 
-        public override void Update(GameTime gameTime)
+        public override bool Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -86,7 +86,7 @@ namespace SpaceInvaders
             if (mag > 0.0f)
                 m_vel *= (mag - mag * m_friction * dt) / mag;
 
-            base.Update(gameTime);
+            return base.Update(gameTime);
         }
 
         public virtual bool CollidesWithMe(Entity e)
