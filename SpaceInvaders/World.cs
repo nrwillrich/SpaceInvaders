@@ -22,9 +22,17 @@ namespace SpaceInvaders
 
         public SpriteFont m_font;
 
-        //public Texture2D m_texPlayer;
-        //public Texture2D m_texNPC;
-        //public Texture2D m_texFood;
+        public Texture2D m_texInvadersSheet;
+
+        public Vector2 enemySize = new Vector2(28, 25);
+
+        float m_frameNum = 0.0f;
+
+        int m_sheetColumns = 2;
+        int m_sheetLines = 4;
+
+        int m_spriteWidth;
+        int m_spriteHeight;
 
         int highScore = 0, p1Score = 0;
 
@@ -185,14 +193,30 @@ namespace SpaceInvaders
         {
             m_graphics = new GraphicsDeviceManager(this);
 
-            m_graphics.PreferredBackBufferWidth = (int)m_screenRes.X;
-            m_graphics.PreferredBackBufferHeight = (int)m_screenRes.Y;
+            m_graphics.PreferredBackBufferWidth = (int) m_screenRes.X;
+            m_graphics.PreferredBackBufferHeight = (int) m_screenRes.Y;
 
             m_graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
+        }
+
+        public Texture2D getSprite(int pos)
+        {
+            int frameInt = (int) m_frameNum;
+            int sx = frameInt % m_sheetColumns;
+            int sy = frameInt / m_sheetColumns;
+
+            Rectangle sourceRectangle = new Rectangle(sx * m_spriteWidth, sy * m_spriteHeight, 20, 28);
+
+            Texture2D cropTexture = new Texture2D(GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
+            Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
+            m_texInvadersSheet.GetData(0, sourceRectangle, data, 0, data.Length);
+            cropTexture.SetData(data);
+
+            return cropTexture;
         }
 
         protected override void Initialize()
@@ -203,26 +227,13 @@ namespace SpaceInvaders
         protected override void LoadContent()
         {
             m_spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            m_texInvadersSheet = Content.Load<Texture2D>("InvadersSheet");
 
-            //m_texPlayer = Content.Load<Texture2D>("Char19");
-            //m_texNPC = Content.Load<Texture2D>("Char14");
-            //m_texFood = Content.Load<Texture2D>("Char09");
+            m_spriteWidth = m_texInvadersSheet.Width / m_sheetColumns;
+            m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;
 
             m_font = Content.Load<SpriteFont>("Arial");
-
-            //m_entities.Add(
-            //    new Player(this, m_screenRes * 0.5f, new Vector2(32, 32), m_texPlayer)
-            //);
-
-            //m_entities.Add(
-            //    new NPC(this, new Vector2(500.0f, 100.0f), new Vector2(64, 64), m_texNPC,
-            //        100.0f, 500.0f, 5.0f)
-            //);
-
-            /*m_entities.Add(
-                 new TestOverlap(this, new Vector2(500.0f, 100.0f), new Vector2(256, 64),
-                                 Content.Load<Texture2D>("Misc05"))
-            );*/
         }
 
         protected override void UnloadContent()
