@@ -38,8 +38,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\Dynamic\Body\Body.cs" />
-    <Compile Include="Entities\Dynamic\Body\Character\Character.cs" />
     <Compile Include="Entities\Dynamic\Bullet\BulletSpaceship.cs" />
     <Compile Include="Entities\Dynamic\Bullet\BulletPlayer.cs" />
     <Compile Include="Entities\Dynamic\SpaceShip\SpaceShip.cs" />

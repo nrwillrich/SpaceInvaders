@@ -12,9 +12,12 @@ namespace SpaceInvaders
     {
         const float m_bulletSpeed = 200.0f;
 
+        public static int m_bulletCount = 0;
+        
         public BulletPlayer(World world, Vector2 pos, Vector2 size, Texture2D tex)
             : base(world, pos, size, tex)
         {
+            m_bulletCount++;
         }
 
         public override bool Update(GameTime gameTime)
@@ -22,7 +25,10 @@ namespace SpaceInvaders
             m_pos.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * m_bulletSpeed;
 
             if (m_pos.Y < 0.0f)
+            {
+                m_bulletCount--;
                 return false;
+            }
 
             Vector2 myMin = m_pos - m_size * 0.5f;
             Vector2 myMax = m_pos + m_size * 0.5f;
@@ -34,6 +40,8 @@ namespace SpaceInvaders
                     if (((Dynamic)e).TestOverlapRect(myMin, myMax))
                     {
                         ((SpaceShip)e).WasKilled();
+
+                        m_bulletCount--;
                         return false;
                     }
                 }

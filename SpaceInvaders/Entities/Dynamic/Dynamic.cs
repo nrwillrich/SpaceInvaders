@@ -13,6 +13,7 @@ namespace SpaceInvaders
         public Texture2D m_tex;
 
         public Color m_color = Color.White;
+        public bool isBulletVisible = false;
 
         public Dynamic(World world, Vector2 pos, Vector2 size, Texture2D tex) : base(world)
         {

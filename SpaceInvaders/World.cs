@@ -17,7 +17,7 @@ namespace SpaceInvaders
 
         public KeyboardState m_prevKeyboardState;
         public MouseState m_prevMouseState;
-
+        
         public Vector2 m_screenRes = new Vector2(448.0f, 512.0f);
 
         public SpriteFont m_font;
