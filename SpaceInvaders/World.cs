@@ -68,10 +68,10 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+                        // m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
 
-                        m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
+                        // m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
                     }
                     break;
 
@@ -250,13 +250,13 @@ namespace SpaceInvaders
             
             m_texInvadersSheet = Content.Load<Texture2D>("InvadersSheet");
 
-            m_spriteWidth = m_texInvadersSheet.Width / m_sheetColumns;
-            m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;
-
             m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
             m_texSpaceship = Content.Load<Texture2D>("Spaceship");
             m_texplayerBullet = Content.Load<Texture2D>("Bullet");
-            
+
+            m_spriteWidth = m_texInvadersSheet.Width / m_sheetColumns;
+            m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;
+
             m_font = Content.Load<SpriteFont>("Arial");
         }
 

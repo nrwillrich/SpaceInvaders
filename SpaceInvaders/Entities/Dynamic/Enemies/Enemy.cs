@@ -127,11 +127,13 @@ namespace SpaceInvaders
             firstFrame = !firstFrame;
         }
 
-        public override void Update(GameTime gameTime)
+        public override bool Update(GameTime gameTime)
         {
             UpdateState(gameTime);
 
             base.Update(gameTime);
+
+            return true;
         }
     }
 }
