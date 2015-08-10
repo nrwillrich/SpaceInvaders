@@ -28,9 +28,6 @@ namespace SpaceInvaders
         public Dynamic m_spaceShip;
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
-
-        //List<double> spaceshipTime = new List<double> { 3.0f, 4.0f, 5.0f, 6.0f };
-        //Double[] sapceshipTime = new Double[] { 3.0f, 4.0f, 5.0f, 6.0f };
         
         int highScore = 0, p1Score = 0;
 
@@ -70,15 +67,12 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
-
-
-                        //m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship));
+                                                
                         m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
                         m_spaceShip.isVisible = true;
                         m_entities.Add(m_spaceShip);
 
-                        m_timeStart = 15.0f;
-
+                        m_timeStart = 35.0f;
                     }
                     break;
 
@@ -137,7 +131,7 @@ namespace SpaceInvaders
                         if (m_timeStart <= 0.0f)
                         {
                             Random rnd = new Random();
-                            int spaceshipTime = rnd.Next(10, 15);
+                            int spaceshipTime = rnd.Next(30, 40);
 
                             //if (!m_spaceShip.isVisible) 
                             //    m_spaceShip.isVisible = true;
@@ -152,8 +146,9 @@ namespace SpaceInvaders
                                 else
                                 {
                                     if (m_timeStart <= 0.0f)
-                                    {                                       
-                                        m_timeStart = Convert.ToDouble(spaceshipTime);
+                                    {
+                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_timeStart = spaceshipTime;
                                         m_inverse = !m_inverse;
                                     }
                                 }
@@ -168,7 +163,8 @@ namespace SpaceInvaders
                                 {
                                     if (m_timeStart <= 0.0f)
                                     {
-                                        m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_timeStart = spaceshipTime;
                                         m_inverse = !m_inverse;
                                     }
                                 }
@@ -349,6 +345,5 @@ namespace SpaceInvaders
 
             base.Draw(gameTime);
         }
-        
     }
 }
