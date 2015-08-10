@@ -23,7 +23,7 @@ namespace SpaceInvaders
             isVisible = true;
         }
 
-        Rectangle m_recSpaceship; 
+        //Rectangle m_recSpaceship; 
 
         public override bool Update(GameTime gameTime)
         {
