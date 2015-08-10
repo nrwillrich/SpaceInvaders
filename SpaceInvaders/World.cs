@@ -34,6 +34,7 @@ namespace SpaceInvaders
         public bool m_inverse = false;
 
         public double m_timeStart = 0.0f;
+        public 
         
         GameState m_state = GameState.MainMenu;
 
@@ -73,7 +74,7 @@ namespace SpaceInvaders
                         m_spaceShip.isVisible = true;
                         m_entities.Add(m_spaceShip);
 
-                        m_timeStart = 3.0f;
+                        m_timeStart = 5.0f;
 
                     }
                     break;
@@ -143,7 +144,7 @@ namespace SpaceInvaders
                                 }
                                 else
                                 {
-                                    m_timeStart = 3.0f;
+                                    m_timeStart = 5.0f;
                                     m_inverse = !m_inverse;
                                 }
                             }
@@ -155,7 +156,7 @@ namespace SpaceInvaders
                                 }
                                 else
                                 {
-                                    m_timeStart = 3.0f;
+                                    m_timeStart = 5.0f;
                                     m_inverse = !m_inverse;
                                 }
                             }

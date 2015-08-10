@@ -44,12 +44,11 @@ namespace SpaceInvaders
                     }
                 }
             }
-
-
+            
             //if (Keyboard.GetState().IsKeyDown(Keys.Z) && !m_world.m_prevKeyboardState.IsKeyDown(Keys.Z))
-            //    {
-            //        m_world.m_entities.Add(new BulletSpaceship(m_world, m_pos, new Vector2(16.0f, 16.0f), m_world.m_texSpaceship));
-            //    }
+            //{
+            //    m_world.m_entities.Add(new BulletSpaceship(m_world, m_pos, new Vector2(2.0f, 6.0f), m_world.m_texplayerBullet));
+            //}
 
             return base.Update(gameTime);
         }

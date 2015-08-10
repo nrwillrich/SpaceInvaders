@@ -11,6 +11,7 @@ namespace SpaceInvaders
     public class BulletSpaceship : Dynamic
     {
         const float m_bulletSpeed = 200.0f;
+        public double m_bulletTime = 0.0f;
 
         public BulletSpaceship(World world, Vector2 pos, Vector2 size, Texture2D tex)
             : base(world, pos, size, tex)
