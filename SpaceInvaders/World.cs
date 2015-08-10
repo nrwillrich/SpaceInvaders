@@ -29,6 +29,9 @@ namespace SpaceInvaders
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
 
+        //List<double> spaceshipTime = new List<double> { 3.0f, 4.0f, 5.0f, 6.0f };
+        //Double[] sapceshipTime = new Double[] { 3.0f, 4.0f, 5.0f, 6.0f };
+        
         int highScore = 0, p1Score = 0;
 
         public bool m_inverse = false;
@@ -74,7 +77,7 @@ namespace SpaceInvaders
                         m_spaceShip.isVisible = true;
                         m_entities.Add(m_spaceShip);
 
-                        m_timeStart = 5.0f;
+                        m_timeStart = 15.0f;
 
                     }
                     break;
@@ -133,6 +136,9 @@ namespace SpaceInvaders
 
                         if (m_timeStart <= 0.0f)
                         {
+                            Random rnd = new Random();
+                            int spaceshipTime = rnd.Next(10, 15);
+
                             //if (!m_spaceShip.isVisible) 
                             //    m_spaceShip.isVisible = true;
 
@@ -142,10 +148,14 @@ namespace SpaceInvaders
                                 {
                                     m_spaceShip.m_pos -= (new Vector2(1.5f, 0));
                                 }
+
                                 else
                                 {
-                                    m_timeStart = 5.0f;
-                                    m_inverse = !m_inverse;
+                                    if (m_timeStart <= 0.0f)
+                                    {                                       
+                                        m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_inverse = !m_inverse;
+                                    }
                                 }
                             }
                             else
@@ -156,8 +166,11 @@ namespace SpaceInvaders
                                 }
                                 else
                                 {
-                                    m_timeStart = 5.0f;
-                                    m_inverse = !m_inverse;
+                                    if (m_timeStart <= 0.0f)
+                                    {
+                                        m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_inverse = !m_inverse;
+                                    }
                                 }
                             }
                         }

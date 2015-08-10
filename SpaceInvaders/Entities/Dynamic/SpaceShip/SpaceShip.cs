@@ -14,6 +14,7 @@ namespace SpaceInvaders
         public bool m_inverse;
         BulletSpaceship bulletspaceship;
         Random rndBullet;
+       
 
         //const float m_playerSpeed = 200.0f;
 
