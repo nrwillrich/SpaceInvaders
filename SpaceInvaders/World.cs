@@ -25,11 +25,16 @@ namespace SpaceInvaders
         public Texture2D m_texPlayer;
         public Texture2D m_texSpaceship;
         public Texture2D m_texplayerBullet;
+        public Dynamic m_spaceShip;
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
 
         int highScore = 0, p1Score = 0;
 
+        public bool m_inverse = false;
+
+        public double m_timeStart = 0.0f;
+        
         GameState m_state = GameState.MainMenu;
 
         public Rectangle[] m_playerPlaying = new Rectangle[]
@@ -63,7 +68,13 @@ namespace SpaceInvaders
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
 
-                        m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
+                        //m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship));
+                        m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
+                        m_spaceShip.isVisible = true;
+                        m_entities.Add(m_spaceShip);
+
+                        m_timeStart = 3.0f;
+
                     }
                     break;
 
@@ -117,6 +128,39 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        m_timeStart -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                        if (m_timeStart <= 0.0f)
+                        {
+                            //if (!m_spaceShip.isVisible) 
+                            //    m_spaceShip.isVisible = true;
+
+                            if (m_inverse)
+                            {
+                                if (m_spaceShip.m_pos.X > -m_spaceShip.m_size.X)
+                                {
+                                    m_spaceShip.m_pos -= (new Vector2(1.5f, 0));
+                                }
+                                else
+                                {
+                                    m_timeStart = 3.0f;
+                                    m_inverse = !m_inverse;
+                                }
+                            }
+                            else
+                            {
+                                if (m_spaceShip.m_pos.X < this.m_screenRes.X + m_spaceShip.m_size.X)
+                                {
+                                    m_spaceShip.m_pos += (new Vector2(1.5f, 0));
+                                }
+                                else
+                                {
+                                    m_timeStart = 3.0f;
+                                    m_inverse = !m_inverse;
+                                }
+                            }
+                        }
+
                         //Update(gameTime);
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
@@ -157,6 +201,8 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 25.0F), Color.White);
+                        m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(70.0f, 45.0F), Color.White);
                         m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
                     }
                     break;
@@ -180,8 +226,8 @@ namespace SpaceInvaders
 
             //String strPlay = "PLAY";
 
-            m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 75.0F), Color.White);
-            m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(70.0f, 95.0F), Color.White);
+            m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 25.0F), Color.White);
+            m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(70.0f, 45.0F), Color.White);
             
             //m_spriteBatch.DrawString(m_font, strPlay.Substring(0, (int) lengthPlay), new Vector2(90.0f, 135.0F), Color.White);
 
