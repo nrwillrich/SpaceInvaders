@@ -14,7 +14,7 @@ namespace SpaceInvaders
 
         public Entity(World world) { m_world = world; }
 
-        public virtual bool Update(GameTime gameTime) { return true;  }
+        public virtual bool Update(GameTime gameTime) { return true; }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch) {}
     }

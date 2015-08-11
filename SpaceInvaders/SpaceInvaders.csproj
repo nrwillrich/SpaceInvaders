@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Dynamic\Dynamic.cs" />
-    <Compile Include="Entities\Dynamic\Enemies\Enemies.cs" />
+    <Compile Include="Enemies.cs" />
     <Compile Include="Entities\Dynamic\Enemies\Enemy.cs" />
     <Compile Include="Entities\Dynamic\Bullet\BulletSpaceship.cs" />
     <Compile Include="Entities\Dynamic\Bullet\BulletPlayer.cs" />

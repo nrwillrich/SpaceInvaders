@@ -40,15 +40,17 @@ namespace SpaceInvaders
 
         GameState m_state = GameState.MainMenu;
 
+        Enemies m_enemies;
+
         public Rectangle[] m_playerPlaying = new Rectangle[]
-          {
-                    new Rectangle ( 0, 0, 34, 21)
-          };
+        {
+            new Rectangle ( 0, 0, 34, 21)
+        };
 
         public Rectangle[] m_playerDayingAnim = new Rectangle[]
         {
-                    new Rectangle ( 0, 20, 34, 21),
-                    new Rectangle ( 0, 40, 34, 21)
+            new Rectangle ( 0, 20, 34, 21),
+            new Rectangle ( 0, 40, 34, 21)
         };
 
         public float m_playerFrame = 0.0f;
@@ -68,9 +70,10 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        // m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
-
-
+                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+                        m_enemies = new Enemies(this);
+                        // m_entities.Add(new Enemy(this, new Vector2(30, 25), new Vector2(28, 20), 0, 1, 6));
+                        
                         // m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
                     }
                     break;
@@ -125,6 +128,10 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        if (Keyboard.GetState().IsKeyDown(Keys.Space) &&
+                            !m_prevKeyboardState.IsKeyDown(Keys.Space)) {
+                                m_enemies.Step();   
+                        }
                         //Update(gameTime);
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
@@ -165,7 +172,8 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
+                        m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 300.0f), Color.White);
+                        //m_spriteBatch.Draw(getSprite(6), new Rectangle(new Point(50, 50), new Point(28, 20)), Color.White);
                     }
                     break;
 
@@ -225,11 +233,11 @@ namespace SpaceInvaders
 
         public Texture2D getSprite(int pos)
         {
-            int frameInt = (int) m_frameNum;
+            int frameInt = pos; // (int)m_frameNum;
             int sx = frameInt % m_sheetColumns;
             int sy = frameInt / m_sheetColumns;
 
-            Rectangle sourceRectangle = new Rectangle(sx * m_spriteWidth, sy * m_spriteHeight, 20, 28);
+            Rectangle sourceRectangle = new Rectangle(sx * m_spriteWidth, sy * m_spriteHeight, 28, 20);
 
             Texture2D cropTexture = new Texture2D(GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
             Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
