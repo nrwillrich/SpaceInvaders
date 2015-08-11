@@ -25,7 +25,9 @@ namespace SpaceInvaders
         public Texture2D m_texPlayer;
         public Texture2D m_texSpaceship;
         public Texture2D m_texplayerBullet;
+        public Texture2D m_texBarrier;
         public Dynamic m_spaceShip;
+
         //public Texture2D m_texNPC;
         //public Texture2D m_texFood;
         
@@ -67,6 +69,8 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+
+                        m_entities.Add(new Barrier(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(44, 32), m_texBarrier));
                                                 
                         m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
                         m_spaceShip.isVisible = true;
@@ -132,7 +136,7 @@ namespace SpaceInvaders
                         {
                             Random rnd = new Random();
                             int spaceshipTime = rnd.Next(30, 40);
-
+                            
                             //if (!m_spaceShip.isVisible) 
                             //    m_spaceShip.isVisible = true;
 
@@ -164,7 +168,7 @@ namespace SpaceInvaders
                                     if (m_timeStart <= 0.0f)
                                     {
                                         //m_timeStart = Convert.ToDouble(spaceshipTime);
-                                        m_timeStart = spaceshipTime;
+                                          m_timeStart = spaceshipTime;
                                         m_inverse = !m_inverse;
                                     }
                                 }
@@ -283,6 +287,7 @@ namespace SpaceInvaders
             m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
             m_texSpaceship = Content.Load<Texture2D>("Spaceship");
             m_texplayerBullet = Content.Load<Texture2D>("Bullet");
+            m_texBarrier = Content.Load<Texture2D>("Barrier");
             
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
@@ -335,7 +340,7 @@ namespace SpaceInvaders
             m_spriteBatch.Begin(SpriteSortMode.BackToFront,
                                 BlendState.AlphaBlend,
                                 SamplerState.PointClamp);
-
+   
             foreach (Entity e in m_entities)
                 e.Draw(gameTime, m_spriteBatch);
                         
