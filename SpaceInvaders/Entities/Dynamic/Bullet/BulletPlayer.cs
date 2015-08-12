@@ -40,7 +40,23 @@ namespace SpaceInvaders
                     if (((Dynamic)e).TestOverlapRect(myMin, myMax))
                     {
                         ((SpaceShip)e).WasKilled();
+                       
+                        m_bulletCount--;
+                        return false;
+                    }
+                }
 
+                if (e is Barrier)
+                {
+                    if (((Dynamic)e).TestOverlapRect(myMin, myMax))
+                    {
+                        //if (((Barrier)e).m_barreirHitpoint())
+                        //{
+
+                        //}
+
+                        ((Barrier)e).BarrierHit();
+                        
                         m_bulletCount--;
                         return false;
                     }

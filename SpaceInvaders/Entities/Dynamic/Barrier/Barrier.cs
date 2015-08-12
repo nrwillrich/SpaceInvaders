@@ -9,13 +9,20 @@ namespace SpaceInvaders
 {
     class Barrier : Dynamic
     {
-        //bool m_isAlive = true;
+        bool m_isAlive = true;
+
+        public int m_barreirHitpoint = 3;
 
         public Barrier(World world, Vector2 pos, Vector2 size, Texture2D tex)
             : base(world, pos, size, tex) { }
 
         public override bool Update(GameTime gameTime)
         {
+            //if (m_barreirHitpoint <= 0)
+            //{
+                if (!m_isAlive)
+                    return false;
+            //}
             //if (!m_isAlive)
             //    return false;
 
@@ -27,12 +34,18 @@ namespace SpaceInvaders
             return base.Update(gameTime);
         }
 
-        //public void WasKilled() { m_isAlive = false; }
+        public void BarrierHit() {
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            //m_world.m_spriteBatch.Draw(m_world.m_texBarrier, m_pos, Color.White);
-            m_world.m_spriteBatch.Draw(m_world.m_texBarrier, m_pos, null, Color.White, 0.0f, new Vector2((float)m_world.m_texBarrier.Width, (float)m_world.m_texBarrier.Height) * 0.5f, Vector2.One, SpriteEffects.None, 0.0f);
+            m_barreirHitpoint--;
+            if (m_barreirHitpoint == 0)
+                m_isAlive = false;
         }
+        
+
+        //public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        //{
+            //m_world.m_spriteBatch.Draw(m_world.m_texBarrier, m_pos, Color.White);
+           // m_world.m_spriteBatch.Draw(m_world.m_texBarrier, m_pos, null, Color.White, 0.0f, new Vector2((float)m_world.m_texBarrier.Width, (float)m_world.m_texBarrier.Height) * 0.5f, Vector2.One, SpriteEffects.None, 0.0f);
+        //}
     }
 }

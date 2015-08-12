@@ -36,8 +36,7 @@ namespace SpaceInvaders
         public bool m_inverse = false;
 
         public double m_timeStart = 0.0f;
-        public 
-        
+                
         GameState m_state = GameState.MainMenu;
 
         public Rectangle[] m_playerPlaying = new Rectangle[]
@@ -51,8 +50,33 @@ namespace SpaceInvaders
                     new Rectangle ( 0, 40, 34, 21)
         };
 
-        public float m_playerFrame = 0.0f;
+        public Vector2[] m_barrierPositions = new Vector2[]
+        {
+             new Vector2(8,  0),
+             new Vector2(16, 0),
+            
+             new Vector2(0, 8),
+             new Vector2(8,  8),
+             new Vector2(16, 8),
+             new Vector2(24, 8),
+        };
 
+        public float m_playerFrame = 0.0f;
+        
+        void CreateBarrier(float x, float y)
+        {
+            foreach (Vector2 v in m_barrierPositions)
+                m_entities.Add(new Barrier(this, new Vector2(x + v.X, y + v.Y), new Vector2(8, 8), m_texBarrier));
+
+            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y), new Vector2(8, 8), m_texBarrier));
+
+            //m_entities.Add(new Barrier(this, new Vector2(x,      y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 24, y + 8), new Vector2(8, 8), m_texBarrier));
+        }
+        
         public void EnterState(GameState newState)
         {
             LeaveState();
@@ -70,7 +94,24 @@ namespace SpaceInvaders
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
-                        m_entities.Add(new Barrier(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(44, 32), m_texBarrier));
+                        CreateBarrier(105.0f, 380.0f);
+
+                        CreateBarrier(185.0f, 380.0f);
+
+                        CreateBarrier(265.0f, 380.0f);
+
+                        CreateBarrier(345.0f, 380.0f);
+
+                        /*
+
+                        m_entities.Add(new Barrier(this, new Vector2(105, 380), new Vector2(44, 32), m_texBarrier));
+                                                                         
+                        m_entities.Add(new Barrier(this, new Vector2(185, 380), new Vector2(44, 32), m_texBarrier));
+                                                                          
+                        m_entities.Add(new Barrier(this, new Vector2(265, 380), new Vector2(44, 32), m_texBarrier));
+                                                                         
+                        m_entities.Add(new Barrier(this, new Vector2(345, 380), new Vector2(44, 32), m_texBarrier));
+                         * */
                                                 
                         m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
                         m_spaceShip.isVisible = true;
