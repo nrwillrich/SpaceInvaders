@@ -11,7 +11,7 @@ namespace SpaceInvaders
     {
         bool m_isAlive = true;
 
-        public int m_barreirHitpoint = 3;
+        public int m_barreirHitpoint = 1;
 
         public Barrier(World world, Vector2 pos, Vector2 size, Texture2D tex)
             : base(world, pos, size, tex) { }

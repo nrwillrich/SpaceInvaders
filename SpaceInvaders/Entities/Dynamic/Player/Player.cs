@@ -42,14 +42,14 @@ namespace SpaceInvaders
                 {
                     m_pos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * m_playerSpeed;
 
-                    m_pos.X = Math.Min(m_pos.X, m_world.m_screenRes.X - 80);
+                    m_pos.X = Math.Min(m_pos.X, m_world.m_screenRes.X - 60);
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
                     m_pos.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * m_playerSpeed;
 
-                    m_pos.X = Math.Max(m_pos.X, 80);
+                    m_pos.X = Math.Max(m_pos.X, 60);
                 }
                 //--------------------------------------------------------------------------
                 //Tiro do Player------------------------------------------------------------------------------------------------------

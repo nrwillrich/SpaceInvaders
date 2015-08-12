@@ -172,3 +172,4 @@ G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\b
 G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct3D9.xml
 G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\bin\Windows\Debug\Content\Barrier.png
 E:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\bin\Windows\Debug\Content\Barrier.png
+G:\Documents\ESPECIALIZACAO\IA e Programação 2D\SpaceInvaders2\SpaceInvaders\bin\Windows\Debug\Content\pixel_barrier.jpg

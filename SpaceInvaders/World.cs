@@ -26,6 +26,7 @@ namespace SpaceInvaders
         public Texture2D m_texSpaceship;
         public Texture2D m_texplayerBullet;
         public Texture2D m_texBarrier;
+        public Texture2D m_pixelBarrier;
         public Dynamic m_spaceShip;
 
         //public Texture2D m_texNPC;
@@ -52,13 +53,26 @@ namespace SpaceInvaders
 
         public Vector2[] m_barrierPositions = new Vector2[]
         {
-             new Vector2(8,  0),
-             new Vector2(16, 0),
+            //Barreira é 8 x 6 casas (42 x 30 pixels)
+                                                      new Vector2(12,  0), new Vector2(18,  0), new Vector2(24,  0), new Vector2(30,  0),
+
+                                 new Vector2( 6,  6), new Vector2(12,  6), new Vector2(18,  6), new Vector2(24,  6), new Vector2(30,  6), new Vector2(36,  6),
+
+            new Vector2( 0, 12), new Vector2( 6, 12), new Vector2(12, 12), new Vector2(18, 12), new Vector2(24, 12), new Vector2(30, 12), new Vector2(36, 12), new Vector2(42, 12),
+
+            new Vector2( 0, 18), new Vector2( 6, 18), new Vector2(12, 18),                                           new Vector2(30, 18), new Vector2(36, 18), new Vector2(42, 18),
+                                                                                                                                      
+            new Vector2( 0, 24), new Vector2( 6, 24),                                                                                     new Vector2(36, 24), new Vector2(42, 24),                                 
+
+            new Vector2( 0, 30), new Vector2( 6, 30),                                                                                     new Vector2(36, 30), new Vector2(42, 30)
+
+             //new Vector2(8,  0),
+             //new Vector2(16, 0),
             
-             new Vector2(0, 8),
-             new Vector2(8,  8),
-             new Vector2(16, 8),
-             new Vector2(24, 8),
+             //new Vector2(0, 8),
+             //new Vector2(8,  8),
+             //new Vector2(16, 8),
+             //new Vector2(24, 8),
         };
 
         public float m_playerFrame = 0.0f;
@@ -66,7 +80,7 @@ namespace SpaceInvaders
         void CreateBarrier(float x, float y)
         {
             foreach (Vector2 v in m_barrierPositions)
-                m_entities.Add(new Barrier(this, new Vector2(x + v.X, y + v.Y), new Vector2(8, 8), m_texBarrier));
+                m_entities.Add(new Barrier(this, new Vector2(x + v.X, y + v.Y), new Vector2(6, 6), m_pixelBarrier));
 
             //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y), new Vector2(8, 8), m_texBarrier));
             //m_entities.Add(new Barrier(this, new Vector2(x + 16, y), new Vector2(8, 8), m_texBarrier));
@@ -94,13 +108,13 @@ namespace SpaceInvaders
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
-                        CreateBarrier(105.0f, 380.0f);
+                        CreateBarrier(83.0f, 380.0f);
 
-                        CreateBarrier(185.0f, 380.0f);
+                        CreateBarrier(163.0f, 380.0f);
 
-                        CreateBarrier(265.0f, 380.0f);
-
-                        CreateBarrier(345.0f, 380.0f);
+                        CreateBarrier(243.0f, 380.0f);
+                    
+                        CreateBarrier(323.0f, 380.0f);
 
                         /*
 
@@ -329,6 +343,7 @@ namespace SpaceInvaders
             m_texSpaceship = Content.Load<Texture2D>("Spaceship");
             m_texplayerBullet = Content.Load<Texture2D>("Bullet");
             m_texBarrier = Content.Load<Texture2D>("Barrier");
+            m_pixelBarrier = Content.Load<Texture2D>("pixel_barrier");
             
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
