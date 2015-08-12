@@ -9,7 +9,7 @@ public enum EnemyState { Null, Alive, Dying };
 namespace SpaceInvaders
 {
     class Enemy : Dynamic {
-        bool m_isAlive = true, m_firstFrame = true;
+        public bool m_isAlive = true, m_firstFrame = true;
 
         Rectangle[] m_enemyAlive, m_enemyDying;
 
@@ -22,15 +22,18 @@ namespace SpaceInvaders
             m_enemyDying = enemyDying;
         }
 
+        public void Kill() {
+
+        }
+
         public void ChangeFrame() {
             m_firstFrame = !m_firstFrame;
         }
 
         public override bool Update(GameTime gameTime) {
             if (m_isAlive) {
-
+            
             }
-
             return base.Update(gameTime);
         }
 

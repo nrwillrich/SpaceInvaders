@@ -26,6 +26,8 @@ namespace SpaceInvaders
 
         float m_frameNum = 0.0f;
 
+        float m_stepInterval = 800.0f;
+
         int m_sheetColumns = 2;
         int m_sheetLines = 4;
 
@@ -71,7 +73,9 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+                        
                         m_enemies = new Enemies(this);
+                        
                         // m_entities.Add(new Enemy(this, new Vector2(30, 25), new Vector2(28, 20), 0, 1, 6));
                         
                         // m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
@@ -117,34 +121,16 @@ namespace SpaceInvaders
                         {
                             EnterState(GameState.Playing);
                         }
-                        
-                        //    else if (Keyboard.GetState().IsKeyDown(Keys.D2) &&
-                        //             !m_prevKeyboardState.IsKeyDown(Keys.D2))
-                        //    {
-                        //        EnterState(GameState.MachineTurn);
-                        //    }
                     }
                     break;
 
                 case GameState.Playing:
                     {
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space) &&
-                            !m_prevKeyboardState.IsKeyDown(Keys.Space)) {
-                                m_enemies.Step();   
+                        m_stepInterval -= gameTime.ElapsedGameTime.Milliseconds;
+                        if (m_stepInterval < 0.0f) {
+                            m_enemies.Step();
+                            SetIntervalStep();
                         }
-                        //Update(gameTime);
-                        //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
-                        //if (m_stateTimer <= 0.0)
-                        //{
-                        //    List<Board> ramifications = m_board.GetRamifications('O');
-
-                        //    m_board = ramifications[m_randPlay.Next(ramifications.Count)];
-
-                        //    if (m_board.GetBoardState('O') == BoardState.Playing)
-                        //        EnterState(GameState.HumanTurn);
-                        //    else
-                        //        EnterState(GameState.GameOver);
-                        //}
                     }
                     break;
 
@@ -188,6 +174,21 @@ namespace SpaceInvaders
         }
         
         //float lengthPlay = 0.0f;
+
+        private void SetIntervalStep() {
+            int alive = m_enemies.GetAliveCount();
+            m_stepInterval = 800.0f;
+
+            if (alive <= 30) {
+                m_stepInterval = 650.0f;
+            } else if (alive <= 20) {
+                m_stepInterval = 450.0f;
+            } else if (alive <= 10) {
+                m_stepInterval = 350.0f;
+            } else if (alive <= 5) {
+                m_stepInterval = 150.0f;
+            }
+        }
 
         private void MainMenu(GameTime gameTime)
         {

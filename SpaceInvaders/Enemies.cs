@@ -42,7 +42,7 @@ namespace SpaceInvaders
         int count; //Timer for the invaders
         const int moveNow = 30; // How many seconds you want to move the invaders
         int step = 8; //How many pixels you want the invaders to move
-        public Rectangle[,] m_recInvaders;
+        // public Rectangle[,] m_recInvaders;
 
         public Enemy[,] m_enemies;
 
@@ -82,6 +82,19 @@ namespace SpaceInvaders
                     world.m_entities.Add(enemy);
                     m_enemies[r, c] = enemy;
                 }
+        }
+
+        public int GetAliveCount() {
+            int alive = 0;
+
+            for (int r = 0; r < ROWS; r += 1)
+                for (int c = 0; c < COLS; c += 1) {
+                    if (m_enemies[r, c].m_isAlive) {
+                        alive++;
+                    }
+                }
+
+            return alive;
         }
 
         void Move() {
