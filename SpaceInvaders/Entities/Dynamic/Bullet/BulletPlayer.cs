@@ -29,7 +29,14 @@ namespace SpaceInvaders {
             Vector2 myMax = m_pos + m_size * 0.5f;
 
             foreach (Entity e in m_world.m_entities) {
-                if (e is SpaceShip) {
+                if (e is Enemy) {
+                    if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
+                        ((Enemy)e).Kill();
+
+                        m_bulletCount--;
+                        return false;
+                    }
+                } else if (e is SpaceShip) {
                     if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
                         ((SpaceShip)e).WasKilled();
 

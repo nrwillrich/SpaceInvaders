@@ -179,14 +179,16 @@ namespace SpaceInvaders
             int alive = m_enemies.GetAliveCount();
             m_stepInterval = 800.0f;
 
-            if (alive <= 30) {
-                m_stepInterval = 650.0f;
+            if (alive <= 40) {
+                m_stepInterval = 400.0f;
+            } else if (alive <= 30) {
+                m_stepInterval = 250.0f;
             } else if (alive <= 20) {
-                m_stepInterval = 450.0f;
-            } else if (alive <= 10) {
-                m_stepInterval = 350.0f;
-            } else if (alive <= 5) {
                 m_stepInterval = 150.0f;
+            } else if (alive <= 10) {
+                m_stepInterval = 50.0f;
+            } else if (alive <= 5) {
+                m_stepInterval = 25.0f;
             }
         }
 
