@@ -88,6 +88,12 @@ namespace SpaceInvaders
             EnterState(EnemyState.Dying);
         }
 
+        public void Fire() {
+            if (BulletEnemy.m_bulletCount == 0) {
+                m_world.m_entities.Add(new BulletEnemy(m_world, m_pos, new Vector2(2.0f, 6.0f), m_world.m_texplayerBullet));
+            }
+        }
+
         public void ChangeFrame() {
             m_firstFrame = !m_firstFrame;
         }

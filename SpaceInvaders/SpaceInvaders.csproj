@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Dynamic\Bullet\BulletEnemy.cs" />
     <Compile Include="Entities\Dynamic\Dynamic.cs" />
     <Compile Include="Enemies.cs" />
     <Compile Include="Entities\Dynamic\Enemies\Enemy.cs" />

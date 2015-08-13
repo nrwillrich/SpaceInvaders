@@ -131,6 +131,7 @@ namespace SpaceInvaders
                             m_enemies.Step();
                             SetIntervalStep();
                         }
+                        EnemyFire();
                     }
                     break;
 
@@ -174,6 +175,29 @@ namespace SpaceInvaders
         }
         
         //float lengthPlay = 0.0f;
+
+        private void EnemyFire() {
+            // pegar os enemies ainda disponíveis no m_entities
+            // ver qual deles tem o m_pos.Y maior (mais abaixo na tela)
+            // chamar o .Fire();
+            List<Enemy> enemies = new List<Enemy>();
+            float posY = 0;
+            foreach (Dynamic item in m_entities) {
+                if (item is Enemy) {
+                    if (item.m_pos.Y > posY) {
+                        posY = item.m_pos.Y;
+                        enemies.Clear();
+                        enemies.Add((Enemy) item);
+                    }
+                    if (item.m_pos.Y == posY) {
+                        enemies.Add((Enemy) item);
+                    }
+                }
+            }
+            Random rnd = new Random();
+            int enemyIndex = rnd.Next(0, enemies.Count);
+            enemies[enemyIndex].Fire();
+        }
 
         private void SetIntervalStep() {
             int alive = m_enemies.GetAliveCount();
