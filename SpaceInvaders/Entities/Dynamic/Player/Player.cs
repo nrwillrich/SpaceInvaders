@@ -12,26 +12,27 @@ namespace SpaceInvaders {
 
         const float m_playerSpeed = 200.0f;
 
+        //double m_animationTime = 0.0f;
 
-        //Bullet bullet = null;
         public Player(World world, Vector2 pos, Vector2 size, Texture2D tex)
             : base(world, pos, size, tex) {
             isVisible = true;
         }
 
         public Rectangle[] m_playerPlaying = new Rectangle[]
-          {
-                    new Rectangle ( 0, 0, 34, 21)
-          };
+        {
+            new Rectangle ( 0, 0, 34, 21)
+        };
 
         public Rectangle[] m_playerDayingAnim = new Rectangle[]
         {
-                    new Rectangle ( 0, 20, 34, 21),
-                    new Rectangle ( 0, 40, 34, 21)
+            new Rectangle ( 0, 20, 34, 21),
+            new Rectangle ( 0, 40, 34, 21)
         };
 
         public override bool Update(GameTime gameTime) {
             if (m_isAlive) {
+                //Movimentação do Player----------------------------------------------------
                 if (Keyboard.GetState().IsKeyDown(Keys.Right)) {
                     m_pos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * m_playerSpeed;
 
@@ -43,11 +44,12 @@ namespace SpaceInvaders {
 
                     m_pos.X = Math.Max(m_pos.X, 80);
                 }
-
+                //--------------------------------------------------------------------------
+                //Tiro do Player------------------------------------------------------------------------------------------------------
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) && !m_world.m_prevKeyboardState.IsKeyDown(Keys.Space)) {
                     if (BulletPlayer.m_bulletCount == 0)
-                        m_world.m_entities.Add(new BulletPlayer(m_world, m_pos, new Vector2(16.0f, 16.0f), m_world.m_texPlayer));
-
+                        m_world.m_entities.Add(new BulletPlayer(m_world, m_pos, new Vector2(2.0f, 6.0f), m_world.m_texplayerBullet));
+                    //--------------------------------------------------------------------------------------------------------------------
                     /*
                     bool found = false;
 
@@ -75,9 +77,6 @@ namespace SpaceInvaders {
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
             Rectangle p = m_playerPlaying[(int)m_world.m_playerFrame % m_playerPlaying.Length];
             Rectangle d = m_playerDayingAnim[(int)m_world.m_playerFrame % m_playerDayingAnim.Length];
-
-            //m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
-            //m_spriteBatch.Draw(m_texPlayer, new Vector2(300.0f, 100.0f), Color.White);
 
             if (!m_isAlive)
                 m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, d, Color.White, 0.0f, new Vector2(d.Width, d.Height) * 0.5f,

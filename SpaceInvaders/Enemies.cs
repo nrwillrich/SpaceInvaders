@@ -58,25 +58,27 @@ namespace SpaceInvaders
                 {
                     Enemy enemy = null;
 
+                    Vector2 position = new Vector2(20, 85) + new Vector2(30 * (c + 1), 25 * (r + 1));
+
                     switch(r) {
                         case 0: {
-                            enemy = new Enemy(world, new Vector2(30 * (c + 1), 25 * (r + 1)), new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy3Playing, m_EnemyDying);
+                            enemy = new Enemy(world, position, new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy3Playing, m_EnemyDying);
                         } break;
 
                         case 1: {
-                            enemy = new Enemy(world, new Vector2(30 * (c + 1), 25 * (r + 1)), new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy2Playing, m_EnemyDying);
+                            enemy = new Enemy(world, position, new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy2Playing, m_EnemyDying);
                         } break;
 
                         case 2: {
-                            enemy = new Enemy(world, new Vector2(30 * (c + 1), 25 * (r + 1)), new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy2Playing, m_EnemyDying);
+                            enemy = new Enemy(world, position, new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy2Playing, m_EnemyDying);
                         } break;
 
                         case 3: {
-                            enemy = new Enemy(world, new Vector2(30 * (c + 1), 25 * (r + 1)), new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy1Playing, m_EnemyDying);
+                            enemy = new Enemy(world, position, new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy1Playing, m_EnemyDying);
                         } break;
 
                         case 4: {
-                            enemy = new Enemy(world, new Vector2(30 * (c + 1), 25 * (r + 1)), new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy1Playing, m_EnemyDying);
+                            enemy = new Enemy(world, position, new Vector2(28, 20), world.m_texInvadersSheet, m_Enemy1Playing, m_EnemyDying);
                         } break;
                     }
                     world.m_entities.Add(enemy);

@@ -21,7 +21,6 @@ namespace SpaceInvaders {
                 return false;
             }
 
-
             Vector2 myMin = m_pos - m_size * 0.5f;
             Vector2 myMax = m_pos + m_size * 0.5f;
 
@@ -33,7 +32,6 @@ namespace SpaceInvaders {
                     }
                 }
             }
-
             return base.Update(gameTime);
         }
     }
