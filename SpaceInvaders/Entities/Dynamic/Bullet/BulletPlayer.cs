@@ -10,7 +10,7 @@ namespace SpaceInvaders
 {
     public class BulletPlayer : Dynamic
     {
-        const float m_bulletSpeed = 200.0f;
+        const float m_bulletSpeed = 500.0f;
 
         public static int m_bulletCount = 0;
         

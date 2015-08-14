@@ -63,7 +63,7 @@ namespace SpaceInvaders
                     {
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.25f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
-                        m_entities.Add(new Player2(this, new Vector2(m_screenRes.X * 0.75f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer2));
+                        //m_entities.Add(new Player2(this, new Vector2(m_screenRes.X * 0.75f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer2));
 
                         m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
                     }
@@ -121,8 +121,7 @@ namespace SpaceInvaders
                     {
                         //if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start))
                         //    m_entities.Add(new Player2(this, new Vector2(m_screenRes.X * 0.75f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer2));
-
-
+                        
                         //Update(gameTime);
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
@@ -141,11 +140,12 @@ namespace SpaceInvaders
 
                 case GameState.GameOver:
                     {
-                        //if (Mouse.GetState().LeftButton == ButtonState.Pressed &&
-                        //   m_prevMouseState.LeftButton != ButtonState.Pressed)
-                        //{
-                        //    EnterState(GameState.MainMenu);
-                        //}
+                        if (Keyboard.GetState().IsKeyDown(Keys.Enter) &&
+                            !m_prevKeyboardState.IsKeyDown(Keys.Enter))
+                        {
+                            
+                            EnterState(GameState.MainMenu);
+                        }
                     }
                     break;
             }
@@ -163,7 +163,7 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
+                        //m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 100.0f), Color.White);
                     }
                     break;
 
@@ -171,6 +171,8 @@ namespace SpaceInvaders
                     {
                         //DrawBoard();
 
+                        m_spriteBatch.DrawString(m_font, "GAME OVER DUDE", new Vector2(150.0f, 200.0f), Color.Red);
+                        
                         //m_spriteBatch.DrawString(m_font, m_board.GetBoardState('X').ToString(), new Vector2(100.0f, 300.0f), Color.White);
                     }
                     break;

@@ -14,6 +14,8 @@ namespace SpaceInvaders
 
         const float m_playerSpeed = 200.0f;
 
+        double m_dyingTime = 1.5;
+
         //double m_animationTime = 0.0f;
                 
         public Player(World world, Vector2 pos, Vector2 size, Texture2D tex)
@@ -77,6 +79,26 @@ namespace SpaceInvaders
 
             }
 
+
+
+            //if (!m_isAlive)
+            //{
+            //    m_dyingTime -= gameTime.ElapsedGameTime.TotalSeconds;
+
+            //    if (m_dyingTime <= 0.0)
+            //    {
+            //        m_world.EnterState(GameState.GameOver);
+            //    }
+            //}
+
+            if (!isVisible)
+            {
+                if (m_dyingTime >= 0.0) // Se tirar este timer, não tem como entrar  no mainmenu com o enter
+                    m_world.EnterState(GameState.GameOver);
+            }
+
+
+
             return base.Update(gameTime);
         }
 
@@ -86,13 +108,34 @@ namespace SpaceInvaders
         {
             Rectangle p = m_playerPlaying[(int)m_world.m_playerFrame % m_playerPlaying.Length];
             Rectangle d = m_playerDayingAnim[(int)m_world.m_playerFrame % m_playerDayingAnim.Length];
-                        
-            if (!m_isAlive)
-                m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, d, Color.White, 0.0f, new Vector2(d.Width, d.Height) * 0.5f,
+
+            //if (!m_isAlive)
+            //    m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, d, Color.White, 0.0f, new Vector2(d.Width, d.Height) * 0.5f,
+            //        Vector2.One, SpriteEffects.None, 0.0f);
+
+            //if (!m_isAlive)
+            //    isVisible = false;
+
+            if(!m_isAlive)
+            {
+                m_dyingTime -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (m_dyingTime >= 0.0)
+                {
+                    m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, d, Color.White, 0.0f, new Vector2(d.Width, d.Height) * 0.5f,
                     Vector2.One, SpriteEffects.None, 0.0f);
+
+                    isVisible = false;
+                }
+            }
+           
             else
                 m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, p, Color.White, 0.0f, new Vector2(p.Width, p.Height) * 0.5f,
                     Vector2.One, SpriteEffects.None, 0.0f);
+
+            {
+                m_world.m_spriteBatch.DrawString(m_world.m_font, m_dyingTime.ToString(), new Vector2(100.0f, 130.0f), Color.White, 0.0f, Vector2.One, 2.0f, SpriteEffects.None, 0.0f);
+            }
 
             {
                 Rectangle r = m_playerDayingAnim[(int)m_world.m_playerFrame % m_playerDayingAnim.Length];
@@ -102,3 +145,4 @@ namespace SpaceInvaders
         }
     }
 }
+
