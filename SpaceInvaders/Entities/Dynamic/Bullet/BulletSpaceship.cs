@@ -17,7 +17,7 @@ namespace SpaceInvaders {
         public override bool Update(GameTime gameTime) {
             m_pos.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * m_bulletSpeed;
 
-            if (m_pos.Y < 0.0f) {
+            if (m_pos.Y > 448.0f) {
                 return false;
             }
 

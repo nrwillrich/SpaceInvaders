@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
-public enum GameState { Null, MainMenu, Playing, GameOver };
+public enum GameState { Null, MainMenu, Playing, PlayerDead, GameOver };
 
 namespace SpaceInvaders
 {
@@ -26,6 +26,7 @@ namespace SpaceInvaders
         Texture2D m_texLine;
 
         float m_stepInterval = 800.0f;
+        float m_dyingTimer = 1800.0f;
 
         int m_sheetColumns = 2;
         int m_sheetLines = 4;
@@ -84,35 +85,27 @@ namespace SpaceInvaders
             switch (m_state)
             {
                 case GameState.MainMenu:
-                    {
-                        m_lives = 6;
-                        m_p1Score = 0;
-                    }
-                    break;
+                {
+                    m_lives = 6;
+                    m_p1Score = 0;
+                }
+                break;
 
-                case GameState.Playing:
-                    {
-                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
-                        
-                        m_enemies = new Enemies(this);
+                case GameState.Playing: { 
+                } break;
 
-                        CreateBarrier(83.0f, 380.0f);
-                        CreateBarrier(163.0f, 380.0f);
-                        CreateBarrier(243.0f, 380.0f);
-                        CreateBarrier(323.0f, 380.0f);
-
-                        m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.25f), new Vector2(32, 32), m_texSpaceship);
-                        m_spaceShip.isVisible = true;
-                        m_entities.Add(m_spaceShip);
-                        m_timeStart = 35.0f;
-
-                    }
-                    break;
+                case GameState.PlayerDead: {
+                    m_dyingTimer = 1800.0f;
+                } break;
 
                 case GameState.GameOver:
-                    {
+                {
+                    if (m_p1Score > m_highScore) {
+                        m_highScore = m_p1Score;
                     }
-                    break;
+                    m_entities.Clear();
+                }
+                break;
             }
         }
 
@@ -120,20 +113,14 @@ namespace SpaceInvaders
         {
             switch (m_state)
             {
-                case GameState.MainMenu:
-                    {
-                    }
-                    break;
+                case GameState.MainMenu: {
+                } break;
 
-                case GameState.Playing:
-                    {
-                    }
-                    break;
+                case GameState.Playing: {
+                } break;
 
-                case GameState.GameOver:
-                    {
-                    }
-                    break;
+                case GameState.GameOver: {
+                } break;
             }
         }
 
@@ -146,6 +133,7 @@ namespace SpaceInvaders
                         if (Keyboard.GetState().IsKeyDown(Keys.Enter) &&
                             !m_prevKeyboardState.IsKeyDown(Keys.Enter))
                         {
+                            PreloadObjects();
                             EnterState(GameState.Playing);
                         }
                     }
@@ -189,15 +177,24 @@ namespace SpaceInvaders
                     }
                     break;
 
+                case GameState.PlayerDead: {
+                    m_dyingTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                    if (m_dyingTimer < 0) {
+                        m_lives--;
+                        if (m_lives > 0) {
+                            m_entities.Add(new Player(this, new Vector2(70, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+                            EnterState(GameState.Playing);
+                        } else {
+                            EnterState(GameState.GameOver);
+                        }
+                    }
+                } break;
+
                 case GameState.GameOver:
                     {
-                        //if (Mouse.GetState().LeftButton == ButtonState.Pressed &&
-                        //   m_prevMouseState.LeftButton != ButtonState.Pressed)
-                        //{
-                        //    EnterState(GameState.MainMenu);
-                        //}
-                        if (m_p1Score > m_highScore) {
-                            m_highScore = m_p1Score;
+                        if (Keyboard.GetState().IsKeyDown(Keys.Space) &&
+                            !m_prevKeyboardState.IsKeyDown(Keys.Space)) {
+                            EnterState(GameState.MainMenu);
                         }
                     }
                     break;
@@ -223,15 +220,32 @@ namespace SpaceInvaders
 
                 case GameState.GameOver:
                     {
-                        //DrawBoard();
-
-                        //m_spriteBatch.DrawString(m_font, m_board.GetBoardState('X').ToString(), new Vector2(100.0f, 300.0f), Color.White);
+                        m_spriteBatch.DrawString(m_font, "GAME OVER", new Vector2(156.0f, 246.0F), Color.White);
                     }
                     break;
             }
         }
-        
-        //float lengthPlay = 0.0f;
+
+        void PreloadObjects() {
+            m_entities.Add(new Player(this, new Vector2(70, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+
+            m_enemies = new Enemies(this);
+
+            CreateBarrier(83.0f, 380.0f);
+            CreateBarrier(163.0f, 380.0f);
+            CreateBarrier(243.0f, 380.0f);
+            CreateBarrier(323.0f, 380.0f);
+
+            m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.25f), new Vector2(32, 32), m_texSpaceship);
+            m_spaceShip.isVisible = true;
+            m_entities.Add(m_spaceShip);
+            m_timeStart = 35.0f;
+        }
+
+        public void KillPlayer(Player player) {
+            EnterState(GameState.PlayerDead);
+            player.HitPlayer();
+        }
 
         private void UpdateTopHud() {
             m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 75.0F), Color.White);
@@ -270,9 +284,14 @@ namespace SpaceInvaders
                     }
                 }
             }
-            Random rnd = new Random();
-            int enemyIndex = rnd.Next(0, enemies.Count);
-            enemies[enemyIndex].Fire();
+            if (enemies.Count == 0) {
+                EnterState(GameState.GameOver);
+            } else {
+                Random rnd = new Random();
+                int enemyIndex = rnd.Next(0, enemies.Count);
+
+                enemies[enemyIndex].Fire();
+            }
         }
 
         private void SetIntervalStep() {

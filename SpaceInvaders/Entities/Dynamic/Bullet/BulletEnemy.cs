@@ -21,7 +21,7 @@ namespace SpaceInvaders {
         public override bool Update(GameTime gameTime) {
             m_pos.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * m_bulletSpeed;
 
-            if (m_pos.Y > m_world.m_screenRes.Y) {
+            if (m_pos.Y > 448.0f) {
                 m_bulletCount--;
                 return false;
             }
@@ -32,7 +32,8 @@ namespace SpaceInvaders {
             foreach (Entity e in m_world.m_entities) {
                 if (e is Player) {
                     if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
-                        ((Player)e).HitPlayer();
+                        m_world.KillPlayer((Player) e);
+                        // ((Player)e).HitPlayer();
                         m_bulletCount--;
                         return false;
                     }
