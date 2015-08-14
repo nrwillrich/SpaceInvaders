@@ -16,13 +16,14 @@ namespace SpaceInvaders
         public List<Entity> m_entities = new List<Entity>();
 
         public KeyboardState m_prevKeyboardState;
-        public MouseState m_prevMouseState;
-        
+        public GamePadState m_prevGamePadState;
+
         public Vector2 m_screenRes = new Vector2(448.0f, 512.0f);
 
         public SpriteFont m_font;
 
         public Texture2D m_texPlayer;
+        public Texture2D m_texPlayer2;
         public Texture2D m_texSpaceship;
         public Texture2D m_texplayerBullet;
         //public Texture2D m_texNPC;
@@ -60,8 +61,9 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
+                        m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.25f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
 
+                        m_entities.Add(new Player2(this, new Vector2(m_screenRes.X * 0.75f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer2));
 
                         m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
                     }
@@ -117,6 +119,10 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
+                        //if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start))
+                        //    m_entities.Add(new Player2(this, new Vector2(m_screenRes.X * 0.75f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer2));
+
+
                         //Update(gameTime);
                         //m_stateTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                         //if (m_stateTimer <= 0.0)
@@ -211,8 +217,6 @@ namespace SpaceInvaders
             m_graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
-
-            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -225,8 +229,10 @@ namespace SpaceInvaders
             m_spriteBatch = new SpriteBatch(GraphicsDevice);
 
             m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
+            m_texPlayer2 = Content.Load<Texture2D>("Player2Sheet");
             m_texSpaceship = Content.Load<Texture2D>("Spaceship");
             m_texplayerBullet = Content.Load<Texture2D>("Bullet");
+            
             
             //m_texNPC = Content.Load<Texture2D>("Char14");
             //m_texFood = Content.Load<Texture2D>("Char09");
@@ -268,6 +274,7 @@ namespace SpaceInvaders
             base.Update(gameTime);
 
             m_prevKeyboardState = Keyboard.GetState();
+            m_prevGamePadState = GamePad.GetState(PlayerIndex.One);
 
             m_playerFrame += (float)gameTime.ElapsedGameTime.TotalSeconds * 8;
         }
