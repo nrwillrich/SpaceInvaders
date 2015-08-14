@@ -23,8 +23,7 @@ namespace SpaceInvaders
         public SpriteFont m_font;
 
         public Texture2D m_texInvadersSheet;
-
-        float m_frameNum = 0.0f;
+        Texture2D m_texLine;
 
         float m_stepInterval = 800.0f;
 
@@ -43,24 +42,15 @@ namespace SpaceInvaders
         public Dynamic m_spaceShip;
         public double m_timeStart = 0.0f;
 
-        int highScore = 0, p1Score = 0;
+        public int m_highScore = 0, m_p1Score = 0;
+
+        int m_lives = 6;
 
         public bool m_inverse = false;
 
         GameState m_state = GameState.MainMenu;
 
         Enemies m_enemies;
-
-        //public Rectangle[] m_playerPlaying = new Rectangle[]
-        //{
-        //    new Rectangle ( 0, 0, 34, 21)
-        //};
-
-        //public Rectangle[] m_playerDyingAnim = new Rectangle[]
-        //{
-        //    new Rectangle ( 0, 20, 34, 21),
-        //    new Rectangle ( 0, 40, 34, 21)
-        //};
 
         public Vector2[] m_barrierPositions = new Vector2[]
         {
@@ -76,27 +66,11 @@ namespace SpaceInvaders
             new Vector2( 0, 24), new Vector2( 6, 24),                                                                                     new Vector2(36, 24), new Vector2(42, 24),                                 
 
             new Vector2( 0, 30), new Vector2( 6, 30),                                                                                     new Vector2(36, 30), new Vector2(42, 30)
-
-             //new Vector2(8,  0),
-             //new Vector2(16, 0),
-            
-             //new Vector2(0, 8),
-             //new Vector2(8,  8),
-             //new Vector2(16, 8),
-             //new Vector2(24, 8),
         };
 
         void CreateBarrier(float x, float y) {
             foreach (Vector2 v in m_barrierPositions)
                 m_entities.Add(new Barrier(this, new Vector2(x + v.X, y + v.Y), new Vector2(6, 6), m_pixelBarrier));
-
-            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y), new Vector2(8, 8), m_texBarrier));
-            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y), new Vector2(8, 8), m_texBarrier));
-
-            //m_entities.Add(new Barrier(this, new Vector2(x,      y + 8), new Vector2(8, 8), m_texBarrier));
-            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y + 8), new Vector2(8, 8), m_texBarrier));
-            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y + 8), new Vector2(8, 8), m_texBarrier));
-            //m_entities.Add(new Barrier(this, new Vector2(x + 24, y + 8), new Vector2(8, 8), m_texBarrier));
         }
 
         public float m_playerFrame = 0.0f;
@@ -111,6 +85,8 @@ namespace SpaceInvaders
             {
                 case GameState.MainMenu:
                     {
+                        m_lives = 6;
+                        m_p1Score = 0;
                     }
                     break;
 
@@ -125,7 +101,7 @@ namespace SpaceInvaders
                         CreateBarrier(243.0f, 380.0f);
                         CreateBarrier(323.0f, 380.0f);
 
-                        m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
+                        m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.25f), new Vector2(32, 32), m_texSpaceship);
                         m_spaceShip.isVisible = true;
                         m_entities.Add(m_spaceShip);
                         m_timeStart = 35.0f;
@@ -190,15 +166,11 @@ namespace SpaceInvaders
                             Random rnd = new Random();
                             int spaceshipTime = rnd.Next(30, 40);
 
-                            //if (!m_spaceShip.isVisible) 
-                            //    m_spaceShip.isVisible = true;
-
                             if (m_inverse) {
                                 if (m_spaceShip.m_pos.X > -m_spaceShip.m_size.X) {
                                     m_spaceShip.m_pos -= (new Vector2(1.5f, 0));
                                 } else {
                                     if (m_timeStart <= 0.0f) {
-                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
                                         m_timeStart = spaceshipTime;
                                         m_inverse = !m_inverse;
                                     }
@@ -208,7 +180,6 @@ namespace SpaceInvaders
                                     m_spaceShip.m_pos += (new Vector2(1.5f, 0));
                                 } else {
                                     if (m_timeStart <= 0.0f) {
-                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
                                         m_timeStart = spaceshipTime;
                                         m_inverse = !m_inverse;
                                     }
@@ -225,6 +196,9 @@ namespace SpaceInvaders
                         //{
                         //    EnterState(GameState.MainMenu);
                         //}
+                        if (m_p1Score > m_highScore) {
+                            m_highScore = m_p1Score;
+                        }
                     }
                     break;
             }
@@ -242,8 +216,8 @@ namespace SpaceInvaders
 
                 case GameState.Playing:
                     {
-                        m_spriteBatch.DrawString(m_font, "PLAYING", new Vector2(200.0f, 300.0f), Color.White);
-                        //m_spriteBatch.Draw(getSprite(6), new Rectangle(new Point(50, 50), new Point(28, 20)), Color.White);
+                        UpdateTopHud();
+                        UpdateBottomHud();
                     }
                     break;
 
@@ -258,6 +232,25 @@ namespace SpaceInvaders
         }
         
         //float lengthPlay = 0.0f;
+
+        private void UpdateTopHud() {
+            m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 75.0F), Color.White);
+            m_spriteBatch.DrawString(m_font, "  " + m_p1Score.ToString("D4") + "     " + m_highScore.ToString("D4") + "      0000", new Vector2(70.0f, 95.0F), Color.White);
+        }
+
+        private void UpdateBottomHud() {
+            DrawLine(m_spriteBatch, new Vector2(45.0f, 448.0f), new Vector2(403.0f, 448.0f));
+
+            m_spriteBatch.DrawString(m_font, m_lives.ToString("D1"), new Vector2(70.0f, 455.0F), Color.White);
+
+            Rectangle p = new Rectangle (0, 0, 34, 21);
+            for (int x = 1; x <= m_lives; x++) {
+                m_spriteBatch.Draw(m_texPlayer, new Vector2(70.0f + (p.Width * x), 463.0f), p, Color.White, 0.0f, new Vector2(p.Width, p.Height) * 0.5f,
+                    Vector2.One, SpriteEffects.None, 0.0f);
+            }
+
+            m_spriteBatch.DrawString(m_font, "CREDITS 00", new Vector2(300.0f, 455.0F), Color.White);
+        }
 
         private void EnemyFire() {
             // pegar os enemies ainda disponíveis no m_entities
@@ -306,8 +299,7 @@ namespace SpaceInvaders
 
             //String strPlay = "PLAY";
 
-            m_spriteBatch.DrawString(m_font, "SCORE< 1 >    HI-SCORE    SCORE< 2 >", new Vector2(70.0f, 75.0F), Color.White);
-            m_spriteBatch.DrawString(m_font, "  " + p1Score.ToString("D4") + "     " + highScore.ToString("D4") + "      0000", new Vector2(70.0f, 95.0F), Color.White);
+            UpdateTopHud();
             
             //m_spriteBatch.DrawString(m_font, strPlay.Substring(0, (int) lengthPlay), new Vector2(90.0f, 135.0F), Color.White);
 
@@ -339,6 +331,27 @@ namespace SpaceInvaders
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
+        }
+
+        void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end) {
+            Vector2 edge = end - start;
+            // calculate angle to rotate line
+            float angle =
+                (float)Math.Atan2(edge.Y, edge.X);
+
+            sb.Draw(m_texLine,
+                new Rectangle(// rectangle defines shape of line and position of start of line
+                    (int)start.X,
+                    (int)start.Y,
+                    (int)edge.Length(), //sb will strech the texture to fill this rectangle
+                    1), //width of line, change this to make thicker line
+                null,
+                Color.Green, //colour of line
+                angle,     //angle of line (calulated above)
+                new Vector2(0, 0), // point in line about which to rotate
+                SpriteEffects.None,
+                0);
+
         }
 
         public Texture2D getSprite(int pos)
@@ -379,6 +392,9 @@ namespace SpaceInvaders
             m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;
 
             m_font = Content.Load<SpriteFont>("Arial");
+
+            m_texLine = new Texture2D(GraphicsDevice, 1, 1);
+            m_texLine.SetData<Color>(new Color[] { Color.White });
         }
 
         protected override void UnloadContent()

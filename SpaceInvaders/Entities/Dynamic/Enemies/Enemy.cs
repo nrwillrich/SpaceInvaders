@@ -17,6 +17,8 @@ namespace SpaceInvaders
 
         float m_dyingTimer = 250.0f;
 
+        public int points;
+
         public Enemy(World world, Vector2 pos, Vector2 size, Texture2D tex, Rectangle[] enemyAlive, Rectangle[] enemyDying)
             : base(world, pos, size, tex) {
             
@@ -61,6 +63,7 @@ namespace SpaceInvaders
                     m_dyingTimer -= gameTime.ElapsedGameTime.Milliseconds;
                     if (m_dyingTimer < 0) {
                         m_isAlive = false;
+                        m_world.m_p1Score += points;
                     }
                 } break;
             }

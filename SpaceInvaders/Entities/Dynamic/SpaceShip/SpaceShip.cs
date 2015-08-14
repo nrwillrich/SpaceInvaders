@@ -13,6 +13,7 @@ namespace SpaceInvaders {
         BulletSpaceship bulletspaceship;
         Random rndBullet;
 
+        public int points = 100;
 
         //const float m_playerSpeed = 200.0f;
 
