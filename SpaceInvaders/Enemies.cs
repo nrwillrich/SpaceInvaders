@@ -58,7 +58,7 @@ namespace SpaceInvaders
                 {
                     Enemy enemy = null;
 
-                    Vector2 position = new Vector2(20, 85) + new Vector2(30 * (c + 1), 25 * (r + 1));
+                    Vector2 position = new Vector2(20, 115) + new Vector2(30 * (c + 1), 25 * (r + 1));
 
                     switch(r) {
                         case 0: {

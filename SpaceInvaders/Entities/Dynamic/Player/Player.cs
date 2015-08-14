@@ -36,13 +36,13 @@ namespace SpaceInvaders {
                 if (Keyboard.GetState().IsKeyDown(Keys.Right)) {
                     m_pos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * m_playerSpeed;
 
-                    m_pos.X = Math.Min(m_pos.X, m_world.m_screenRes.X - 80);
+                    m_pos.X = Math.Min(m_pos.X, m_world.m_screenRes.X - 70);
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Left)) {
                     m_pos.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * m_playerSpeed;
 
-                    m_pos.X = Math.Max(m_pos.X, 80);
+                    m_pos.X = Math.Max(m_pos.X, 70);
                 }
                 //--------------------------------------------------------------------------
                 //Tiro do Player------------------------------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ namespace SpaceInvaders {
             {
                 Rectangle r = m_playerDyingAnim[(int)m_world.m_playerFrame % m_playerDyingAnim.Length];
 
-                m_world.m_spriteBatch.DrawString(m_world.m_font, "X:" + r.X + " Y:" + r.Y, new Vector2(10, 10), Color.White);
+                // m_world.m_spriteBatch.DrawString(m_world.m_font, "X:" + r.X + " Y:" + r.Y, new Vector2(10, 10), Color.White);
             }
         }
     }
