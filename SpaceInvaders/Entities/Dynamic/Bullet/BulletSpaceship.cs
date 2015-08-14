@@ -30,6 +30,12 @@ namespace SpaceInvaders {
                         ((Player)e).HitPlayer();
                         return false;
                     }
+                } if (e is Barrier) {
+                    if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
+                        ((Barrier)e).BarrierHit();
+
+                        return false;
+                    }
                 }
             }
             return base.Update(gameTime);

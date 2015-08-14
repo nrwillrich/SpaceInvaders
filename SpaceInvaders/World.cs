@@ -37,23 +37,67 @@ namespace SpaceInvaders
         public Texture2D m_texPlayer;
         public Texture2D m_texSpaceship;
         public Texture2D m_texplayerBullet;
+        public Texture2D m_texBarrier;
+        public Texture2D m_pixelBarrier;
+
+        public Dynamic m_spaceShip;
+        public double m_timeStart = 0.0f;
 
         int highScore = 0, p1Score = 0;
+
+        public bool m_inverse = false;
 
         GameState m_state = GameState.MainMenu;
 
         Enemies m_enemies;
 
-        public Rectangle[] m_playerPlaying = new Rectangle[]
+        //public Rectangle[] m_playerPlaying = new Rectangle[]
+        //{
+        //    new Rectangle ( 0, 0, 34, 21)
+        //};
+
+        //public Rectangle[] m_playerDyingAnim = new Rectangle[]
+        //{
+        //    new Rectangle ( 0, 20, 34, 21),
+        //    new Rectangle ( 0, 40, 34, 21)
+        //};
+
+        public Vector2[] m_barrierPositions = new Vector2[]
         {
-            new Rectangle ( 0, 0, 34, 21)
+            //Barreira é 8 x 6 casas (42 x 30 pixels)
+                                                      new Vector2(12,  0), new Vector2(18,  0), new Vector2(24,  0), new Vector2(30,  0),
+
+                                 new Vector2( 6,  6), new Vector2(12,  6), new Vector2(18,  6), new Vector2(24,  6), new Vector2(30,  6), new Vector2(36,  6),
+
+            new Vector2( 0, 12), new Vector2( 6, 12), new Vector2(12, 12), new Vector2(18, 12), new Vector2(24, 12), new Vector2(30, 12), new Vector2(36, 12), new Vector2(42, 12),
+
+            new Vector2( 0, 18), new Vector2( 6, 18), new Vector2(12, 18),                                           new Vector2(30, 18), new Vector2(36, 18), new Vector2(42, 18),
+                                                                                                                                      
+            new Vector2( 0, 24), new Vector2( 6, 24),                                                                                     new Vector2(36, 24), new Vector2(42, 24),                                 
+
+            new Vector2( 0, 30), new Vector2( 6, 30),                                                                                     new Vector2(36, 30), new Vector2(42, 30)
+
+             //new Vector2(8,  0),
+             //new Vector2(16, 0),
+            
+             //new Vector2(0, 8),
+             //new Vector2(8,  8),
+             //new Vector2(16, 8),
+             //new Vector2(24, 8),
         };
 
-        public Rectangle[] m_playerDayingAnim = new Rectangle[]
-        {
-            new Rectangle ( 0, 20, 34, 21),
-            new Rectangle ( 0, 40, 34, 21)
-        };
+        void CreateBarrier(float x, float y) {
+            foreach (Vector2 v in m_barrierPositions)
+                m_entities.Add(new Barrier(this, new Vector2(x + v.X, y + v.Y), new Vector2(6, 6), m_pixelBarrier));
+
+            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y), new Vector2(8, 8), m_texBarrier));
+
+            //m_entities.Add(new Barrier(this, new Vector2(x,      y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 8,  y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 16, y + 8), new Vector2(8, 8), m_texBarrier));
+            //m_entities.Add(new Barrier(this, new Vector2(x + 24, y + 8), new Vector2(8, 8), m_texBarrier));
+        }
 
         public float m_playerFrame = 0.0f;
 
@@ -75,10 +119,17 @@ namespace SpaceInvaders
                         m_entities.Add(new Player(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y - 80), new Vector2(32, 32), m_texPlayer));
                         
                         m_enemies = new Enemies(this);
-                        
-                        // m_entities.Add(new Enemy(this, new Vector2(30, 25), new Vector2(28, 20), 0, 1, 6));
-                        
-                        // m_entities.Add(new SpaceShip(this, new Vector2(m_screenRes.X * 0.5f, m_screenRes.Y * 0.5f), new Vector2(32, 32), m_texSpaceship));
+
+                        CreateBarrier(83.0f, 380.0f);
+                        CreateBarrier(163.0f, 380.0f);
+                        CreateBarrier(243.0f, 380.0f);
+                        CreateBarrier(323.0f, 380.0f);
+
+                        m_spaceShip = new SpaceShip(this, new Vector2(-32f, m_screenRes.Y * 0.16f), new Vector2(32, 32), m_texSpaceship);
+                        m_spaceShip.isVisible = true;
+                        m_entities.Add(m_spaceShip);
+                        m_timeStart = 35.0f;
+
                     }
                     break;
 
@@ -127,11 +178,43 @@ namespace SpaceInvaders
                 case GameState.Playing:
                     {
                         m_stepInterval -= gameTime.ElapsedGameTime.Milliseconds;
+                        m_timeStart -= gameTime.ElapsedGameTime.TotalSeconds;
+
                         if (m_stepInterval < 0.0f) {
                             m_enemies.Step();
                             SetIntervalStep();
                         }
                         EnemyFire();
+
+                        if (m_timeStart <= 0.0f) {
+                            Random rnd = new Random();
+                            int spaceshipTime = rnd.Next(30, 40);
+
+                            //if (!m_spaceShip.isVisible) 
+                            //    m_spaceShip.isVisible = true;
+
+                            if (m_inverse) {
+                                if (m_spaceShip.m_pos.X > -m_spaceShip.m_size.X) {
+                                    m_spaceShip.m_pos -= (new Vector2(1.5f, 0));
+                                } else {
+                                    if (m_timeStart <= 0.0f) {
+                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_timeStart = spaceshipTime;
+                                        m_inverse = !m_inverse;
+                                    }
+                                }
+                            } else {
+                                if (m_spaceShip.m_pos.X < this.m_screenRes.X + m_spaceShip.m_size.X) {
+                                    m_spaceShip.m_pos += (new Vector2(1.5f, 0));
+                                } else {
+                                    if (m_timeStart <= 0.0f) {
+                                        //m_timeStart = Convert.ToDouble(spaceshipTime);
+                                        m_timeStart = spaceshipTime;
+                                        m_inverse = !m_inverse;
+                                    }
+                                }
+                            }
+                        }
                     }
                     break;
 
@@ -288,6 +371,9 @@ namespace SpaceInvaders
             m_texPlayer = Content.Load<Texture2D>("PlayerSheet");
             m_texSpaceship = Content.Load<Texture2D>("Spaceship");
             m_texplayerBullet = Content.Load<Texture2D>("Bullet");
+
+            m_texBarrier = Content.Load<Texture2D>("Barrier");
+            m_pixelBarrier = Content.Load<Texture2D>("pixel_barrier");
 
             m_spriteWidth = m_texInvadersSheet.Width / m_sheetColumns;
             m_spriteHeight = m_texInvadersSheet.Height / m_sheetLines;

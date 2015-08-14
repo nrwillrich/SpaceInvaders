@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpaceInvaders {
     public class BulletPlayer : Dynamic {
-        const float m_bulletSpeed = 200.0f;
+        const float m_bulletSpeed = 500.0f;
 
         public static int m_bulletCount = 0;
 
@@ -40,6 +40,13 @@ namespace SpaceInvaders {
                     if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
                         ((SpaceShip)e).WasKilled();
 
+                        m_bulletCount--;
+                        return false;
+                    }
+                } if (e is Barrier) {
+                    if (((Dynamic)e).TestOverlapRect(myMin, myMax)) {
+                        ((Barrier)e).BarrierHit();
+                        
                         m_bulletCount--;
                         return false;
                     }

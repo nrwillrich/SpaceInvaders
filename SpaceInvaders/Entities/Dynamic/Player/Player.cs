@@ -24,7 +24,7 @@ namespace SpaceInvaders {
             new Rectangle ( 0, 0, 34, 21)
         };
 
-        public Rectangle[] m_playerDayingAnim = new Rectangle[]
+        public Rectangle[] m_playerDyingAnim = new Rectangle[]
         {
             new Rectangle ( 0, 20, 34, 21),
             new Rectangle ( 0, 40, 34, 21)
@@ -76,7 +76,7 @@ namespace SpaceInvaders {
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
             Rectangle p = m_playerPlaying[(int)m_world.m_playerFrame % m_playerPlaying.Length];
-            Rectangle d = m_playerDayingAnim[(int)m_world.m_playerFrame % m_playerDayingAnim.Length];
+            Rectangle d = m_playerDyingAnim[(int)m_world.m_playerFrame % m_playerDyingAnim.Length];
 
             if (!m_isAlive)
                 m_world.m_spriteBatch.Draw(m_world.m_texPlayer, m_pos, d, Color.White, 0.0f, new Vector2(d.Width, d.Height) * 0.5f,
@@ -86,7 +86,7 @@ namespace SpaceInvaders {
                     Vector2.One, SpriteEffects.None, 0.0f);
 
             {
-                Rectangle r = m_playerDayingAnim[(int)m_world.m_playerFrame % m_playerDayingAnim.Length];
+                Rectangle r = m_playerDyingAnim[(int)m_world.m_playerFrame % m_playerDyingAnim.Length];
 
                 m_world.m_spriteBatch.DrawString(m_world.m_font, "X:" + r.X + " Y:" + r.Y, new Vector2(10, 10), Color.White);
             }

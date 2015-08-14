@@ -105,40 +105,40 @@ namespace SpaceInvaders
 
             bool changedirection = false;
 
-            //if (count % moveNow == 0) {
-                for (int r = 0; r < ROWS; r += 1)
-                    for (int c = 0; c < COLS; c += 1) {
-                        if (IsGoingLeft)
-                            m_enemies[r, c].m_pos.X -= step;
-                        else
-                            m_enemies[r, c].m_pos.X += step;
-                        m_enemies[r, c].ChangeFrame();
-                    }
-
-                for (int r = 0; r < ROWS; r += 1)
-                    for (int c = 0; c < COLS; c += 1) {
-                        if (m_enemies[r, c].m_pos.X + 28 > rightside) {
-                            IsGoingLeft = true;
-                            changedirection = true;
-                        }
-                        if (m_enemies[r, c].m_pos.X < leftside) {
-                            IsGoingLeft = false;
-                            changedirection = true;
-                        }
-                    }
-
-                if (changedirection) {
-                    for (int r = 0; r < ROWS; r += 1)
-                        for (int c = 0; c < COLS; c += 1) {
-                            m_enemies[r, c].m_pos.Y = m_enemies[r, c].m_pos.Y + 32;
-                            if (IsGoingLeft)
-                                m_enemies[r, c].m_pos.X -= step;
-
-                            else
-                                m_enemies[r, c].m_pos.X += step;
-                        }
+            foreach (Dynamic dynamic in m_world.m_entities) {
+                if (dynamic is Enemy) {
+                    if (IsGoingLeft)
+                        dynamic.m_pos.X -= step;
+                    else
+                        dynamic.m_pos.X += step;
+                    ((Enemy) dynamic).ChangeFrame();
                 }
-            //}
+            }
+
+            foreach (Dynamic dynamic in m_world.m_entities) {
+                if (dynamic is Enemy) {
+                    if (dynamic.m_pos.X + 28 > rightside) {
+                        IsGoingLeft = true;
+                        changedirection = true;
+                    }
+                    if (dynamic.m_pos.X < leftside) {
+                        IsGoingLeft = false;
+                        changedirection = true;
+                    }
+                }
+            }
+
+            if (changedirection) {
+                foreach (Dynamic dynamic in m_world.m_entities) {
+                    if (dynamic is Enemy) {
+                        dynamic.m_pos.Y = dynamic.m_pos.Y + 32;
+                        if (IsGoingLeft)
+                            dynamic.m_pos.X -= step;
+                        else
+                            dynamic.m_pos.X += step;
+                    }
+                }
+            }
             count += 1;
         }
 
